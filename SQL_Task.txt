@@ -1,0 +1,30 @@
+CREATE DATABASE if not exists cogniance;
+USE cogniance;
+CREATE TABLE employee (employee_id int(5) not null, employee_name varchar(50), primary key(employee_id));
+CREATE TABLE position (position_id int(5) not null, employee_id int(5) not null, position varchar(50), primary key(position_id));
+CREATE TABLE phone (phone_id int(5) not null, position_id int(5) not null, phone_number int(15) not null, primary key(phone_id));
+
+SHOW TABLES;
+
+INSERT INTO employee VALUE ('1', 'Sergey Inshev');
+INSERT INTO employee VALUE ('2', 'Taras Kazydub');
+INSERT INTO employee VALUE ('3', 'Andrew Parmon');
+
+INSERT INTO position VALUE ('1', '2', 'Middle QA');
+INSERT INTO position VALUE ('2', '3', 'Boss');
+INSERT INTO position VALUE ('3', '1', 'QA Intern');
+
+INSERT INTO phone VALUE ('1', '3', '0631692462');
+INSERT INTO phone VALUE ('2', '1', '0689437063');
+INSERT INTO phone VALUE ('3', '2', '1112223344');
+
+SELECT * FROM employee;
+SELECT * FROM position;
+SELECT * FROM phone;
+
+SELECT employee_name FROM employee WHERE employee_id = 2;
+
+SELECT employee.employee_name, position.position, phone.phone_number FROM employee INNER JOIN position USING (employee_id) INNER JOIN phone ON position.position_id = phone.position_id;
+
+SELECT COUNT(*) FROM position;
+
